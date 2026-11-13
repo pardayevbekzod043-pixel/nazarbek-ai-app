@@ -12,11 +12,10 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-      - uses: android-actions/setup-android@v3
       - name: Build Android APK
         run: |
           npm init -y
-          npm install @capacitor/core @capacitor/cli @capacitor/android
+          npm install @capacitor/core@6 @capacitor/cli@6 @capacitor/android@6
           mkdir -p www && cp index.html www/
           echo '{"appId":"com.nazarbek.aiapp","appName":"Nazarbek AI","webDir":"www"}' > capacitor.config.json
           npx cap add android
