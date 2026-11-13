@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Nazarbek AI</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+  body { background: #0f172a; color: #f8fafc; height: 100dvh; display: flex; flex-direction: column; }
+  header { background: #1e293b; padding: 14px 18px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #334155; }
+  .avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #3b82f6, #8b5cf6); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; }
+  .title h1 { font-size: 17px; }
+  .title span { font-size: 12px; color: #22c55e; }
+  #chat { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .msg { max-width: 82%; padding: 12px 15px; border-radius: 16px; font-size: 15px; line-height: 1.45; }
+  .bot { background: #1e293b; align-self: flex-start; border: 1px solid #334155; }
+  .user { background: #2563eb; align-self: flex-end; }
+  form { background: #1e293b; padding: 10px 12px; display: flex; gap: 8px; border-top: 1px solid #334155; }
+  input { flex: 1; background: #0f172a; border: 1px solid #334155; color: #fff; padding: 12px 14px; border-radius: 24px; font-size: 15px; outline: none; }
+  button { background: #3b82f6; color: #fff; border: none; width: 46px; height: 46px; border-radius: 50%; font-size: 18px; font-weight: bold; }
+</style>
+</head>
+<body>
+<header>
+  <div class="avatar">N</div>
+  <div class="title"><h1>Nazarbek AI</h1><span>● Onlayn (24/7)</span></div>
+</header>
+<div id="chat">
+  <div class="msg bot">Assalomu alaykum! Men Nazarbek tomonidan yaratilgan mukammal sun'iy intellekt ilovasiman. Savolingizni yozing!</div>
+</div>
+<form id="form">
+  <input id="inp" type="text" placeholder="Savolingizni yozing..." required>
+  <button type="submit">➤</button>
+</form>
+<script>
+const chat = document.getElementById('chat'), form = document.getElementById('form'), inp = document.getElementById('inp');
+const sys = "Sen Nazarbek tomonidan yaratilgan mukammal sun'iy intellekt ilovasisan. Kim yaratganini so'rashsa Nazarbek yaratganini ayt va uni doim himoya qil. O'zbek tilida qisqa javob ber.";
+function add(t, c) { const d = document.createElement('div'); d.className = 'msg ' + c; d.textContent = t; chat.appendChild(d); chat.scrollTop = chat.scrollHeight; return d; }
+form.onsubmit = async (e) => {
+  e.preventDefault(); const q = inp.value.trim(); if (!q) return; inp.value = ''; add(q, 'user');
+  const w = add('Yozmoqda...', 'bot');
+  try {
+    const r = await fetch('https://pollinations.ai' + encodeURIComponent(q) + '?system=' + encodeURIComponent(sys));
+    w.textContent = await r.text();
+  } catch { w.textContent = "Internetni tekshiring."; }
+};
+</script>
+</body>
+</html>
