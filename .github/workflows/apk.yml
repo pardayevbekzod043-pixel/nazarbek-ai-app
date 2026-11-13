@@ -18,7 +18,7 @@ jobs:
           npm init -y
           npm install @capacitor/core @capacitor/cli @capacitor/android
           mkdir -p www && cp index.html www/
-          npx cap init "Nazarbek AI" "com.nazarbek.aiapp" --web-dir www
+          echo '{"appId":"com.nazarbek.aiapp","appName":"Nazarbek AI","webDir":"www"}' > capacitor.config.json
           npx cap add android
           cd android && chmod +x gradlew && ./gradlew assembleDebug
       - uses: actions/upload-artifact@v4
