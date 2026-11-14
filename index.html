@@ -12,7 +12,7 @@ f.onsubmit=async e=>{
     const r=await fetch(atob("aHR0cHM6Ly9vcGVucm91dGVyLmFpL2FwaS92MS9jaGF0L2NvbXBsZXRpb25z"),{
       method:"POST",
       headers:{"Authorization":"Bearer "+KEY,"Content-Type":"application/json"},
-      body:JSON.stringify({model:"google/gemma-3-27b-it:free",messages:hist})
+      body:JSON.stringify({model:"openrouter/free","provider":{"sort":"throughput"},messages:hist})
     });
     const d=await r.json();
     const ans=d.choices && d.choices.at(0) && d.choices.at(0).message && d.choices.at(0).message.content;
