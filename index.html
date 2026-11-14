@@ -15,7 +15,7 @@ f.onsubmit=async e=>{
       body:JSON.stringify({model:"openrouter/free",messages:hist})
     });
     const d=await r.json();
-    const ans=d.choices&&d.choices&&d.choices.message&&d.choices.message.content;
+    const ans=d.choicesd.choices&&d.choices&&d.choices.messaged.choices&&d.choices&&d.choices.messaged.choicesd.choices&&d.choices&&d.choices.messaged.choices&&d.choices&&d.choices.messaged.choices.message&&d.choices.message.content;
     if(ans){w.textContent=ans.trim();hist.push({role:"assistant",content:ans.trim()});}
     else{w.textContent="Xatolik: "+JSON.stringify(d.error||d).slice(0,120);}
   }catch(err){w.textContent="Tarmoq xatosi, qayta urinib ko'ring.";}
