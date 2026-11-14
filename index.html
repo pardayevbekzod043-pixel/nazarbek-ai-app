@@ -16,7 +16,7 @@ f.onsubmit=async e=>{
     const d=await r.json();
     const ans=d.choices && d.choices.at(0) && d.choices.at(0).message && d.choices.at(0).message.content;
     if(ans){w.textContent=ans.trim();hist.push({role:"assistant",content:ans.trim()});}
-    else{w.textContent="Server uyg'onmoqda, 10 soniyadan keyin qayta yozing!";}
-  }catch(err){w.textContent="Server uyg'onmoqda, 15 soniyadan keyin qayta yozing!";}
+    else{w.textContent="Xato: "+JSON.stringify(d)+"";}
+  }catch(err){w.textContent="Ulanish: "+err.message+"";}
 };
 </script></body></html>
