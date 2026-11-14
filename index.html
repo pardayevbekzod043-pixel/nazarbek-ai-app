@@ -8,7 +8,7 @@ f.onsubmit=async e=>{
   hist.push({role:"user",content:q});
   if(hist.length>11) hist=[hist.at(0), ...hist.slice(-10)];
   try{
-    const r=await fetch("https://nazarbek-ai-bot."+chr(111)+"nrender."+chr(99)+"om/chat",{
+    const r=await fetch(atob("aHR0cHM6Ly9uYXphcmJlay1haS1ib3Qub25yZW5kZXIuY29tL2NoYXQ="),{
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify({messages:hist})
