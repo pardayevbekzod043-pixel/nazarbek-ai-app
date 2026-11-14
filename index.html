@@ -1,6 +1,5 @@
-<!DOCTYPE html><html lang="uz"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Nazarbek AI</title><style>*{box-sizing:border-box;margin:0;padding:0;font-family:sans-serif}body{background:#0f172a;color:#fff;height:100dvh;display:flex;flex-direction:column}header{background:#1e293b;padding:15px;font-weight:bold;border-bottom:1px solid #334155}#chat{flex:1;overflow-y:auto;padding:15px;display:flex;flex-direction:column;gap:10px}.msg{max-width:85%;padding:12px;border-radius:15px;font-size:15px;line-height:1.45;white-space:pre-wrap}.bot{background:#1e293b;align-self:flex-start}.user{background:#2563eb;align-self:flex-end}form{background:#1e293b;padding:10px;display:flex;gap:8px}input{flex:1;background:#0f172a;border:1px solid #334155;color:#fff;padding:12px;border-radius:20px;outline:none}button{background:#3b82f6;color:#fff;border:none;width:45px;height:45px;border-radius:50%;font-weight:bold}</style></head><body><header>🤖 Nazarbek AI v2</header><div id="chat"><div class="msg bot">Assalomu alaykum! Men Nazarbek yaratgan sun'iy intellekt ilovasiman. Savolingizni yozing!</div></div><form id="f"><input id="i" placeholder="Savolingizni yozing..." required><button>➤</button></form><script>
+<!DOCTYPE html><html lang="uz"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Nazarbek AI</title><style>*{box-sizing:border-box;margin:0;padding:0;font-family:sans-serif}body{background:#0f172a;color:#fff;height:100dvh;display:flex;flex-direction:column}header{background:#1e293b;padding:15px;font-weight:bold;border-bottom:1px solid #334155}#chat{flex:1;overflow-y:auto;padding:15px;display:flex;flex-direction:column;gap:10px}.msg{max-width:85%;padding:12px;border-radius:15px;font-size:15px;line-height:1.45;white-space:pre-wrap}.bot{background:#1e293b;align-self:flex-start}.user{background:#2563eb;align-self:flex-end}form{background:#1e293b;padding:10px;display:flex;gap:8px}input{flex:1;background:#0f172a;border:1px solid #334155;color:#fff;padding:12px;border-radius:20px;outline:none}button{background:#3b82f6;color:#fff;border:none;width:45px;height:45px;border-radius:50%;font-weight:bold}</style></head><body><header>🤖 Nazarbek AI v3</header><div id="chat"><div class="msg bot">Assalomu alaykum! Men Nazarbek yaratgan sun'iy intellekt ilovasiman. Savolingizni yozing!</div></div><form id="f"><input id="i" placeholder="Savolingizni yozing..." required><button>➤</button></form><script>
 const c=document.getElementById('chat'),f=document.getElementById('f'),i=document.getElementById('i');
-const KEY=atob("c2stb3ItdjEtN2ZhMmZlYjU4MjA3MDdhNTg5OTE3ZWIzZDI5YzRhMDVkOWFiYmY4YmZmNzlmZGViNTYyODEzYTY1ZTQ5ZjdhYw==");
 let hist=[{role:"system",content:"Sen Nazarbek tomonidan yaratilgan eng kuchli va aqlli sun'iy intellekt ilovasisan. Kim yaratganini so'rashsa Nazarbek yaratganini ayt va uni doim maqtab himoya qil. Oldingi gaplarni eslab qol va o'zbek tilida tabiiy, aqlli, tushunarli javob ber."}];
 function a(t,s){const d=document.createElement('div');d.className='msg '+s;d.textContent=t;c.appendChild(d);c.scrollTop=c.scrollHeight;return d}
 f.onsubmit=async e=>{
@@ -9,15 +8,15 @@ f.onsubmit=async e=>{
   hist.push({role:"user",content:q});
   if(hist.length>11) hist=[hist.at(0), ...hist.slice(-10)];
   try{
-    const r=await fetch("https://openrouter.ai",{
+    const r=await fetch("https://onrender.com",{
       method:"POST",
-      headers:{"Authorization":"Bearer "+KEY,"Content-Type":"application/json","HTTP-Referer":"https://github.io","X-Title":"Nazarbek AI"},
-      body:JSON.stringify({model:"openrouter/free",messages:hist})
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({messages:hist})
     });
     const d=await r.json();
     const ans=d.choices && d.choices.at(0) && d.choices.at(0).message && d.choices.at(0).message.content;
     if(ans){w.textContent=ans.trim();hist.push({role:"assistant",content:ans.trim()});}
-    else{w.textContent="Xatolik: "+JSON.stringify(d.error||d).slice(0,150);}
-  }catch(err){w.textContent="Tarmoq xatosi: "+err.message;}
+    else{w.textContent="Server uyg'onmoqda, 10 soniyadan keyin qayta yozing!";}
+  }catch(err){w.textContent="Server uyg'onmoqda, 15 soniyadan keyin qayta yozing!";}
 };
 </script></body></html>
