@@ -7,17 +7,17 @@ f.onsubmit=async e=>{
   e.preventDefault();const q=i.value.trim();if(!q)return;i.value='';a(q,'user');
   const w=a('Oʻylamoqda...','bot');
   hist.push({role:"user",content:q});
-  if(hist.length>11) hist=[hist, ...hist.slice(-10)];
+  if(hist.length>11) hist=[hist[0], ...hist.slice(-10)];
   try{
     const r=await fetch("https://openrouter.ai",{
       method:"POST",
-      headers:{"Authorization":"Bearer "+KEY,"Content-Type":"application/json"},
+      headers:{"Authorization":"Bearer "+KEY,"Content-Type":"application/json","HTTP-Referer":"https://github.io","X-Title":"Nazarbek AI"},
       body:JSON.stringify({model:"openrouter/free",messages:hist})
     });
     const d=await r.json();
-    const ans=d.choicesd.choices&&d.choices&&d.choices.messaged.choices&&d.choices&&d.choices.messaged.choicesd.choices&&d.choices&&d.choices.messaged.choices&&d.choices&&d.choices.messaged.choices.message&&d.choices.message.content;
+    const ans=d.choices&&d.choices[0]&&d.choices[0].message&&d.choices[0].message.content;
     if(ans){w.textContent=ans.trim();hist.push({role:"assistant",content:ans.trim()});}
-    else{w.textContent="Xatolik: "+JSON.stringify(d.error||d).slice(0,120);}
-  }catch(err){w.textContent="Tarmoq xatosi, qayta urinib ko'ring.";}
+    else{w.textContent="Xatolik: "+JSON.stringify(d.error||d).slice(0,150);}
+  }catch(err){w.textContent="Tarmoq xatosi: "+err.message;}
 };
 </script></body></html>
