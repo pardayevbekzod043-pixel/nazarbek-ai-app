@@ -8,7 +8,7 @@ f.onsubmit=async e=>{
   hist.push({role:"user",content:q});
   if(hist.length>11) hist=[hist.at(0), ...hist.slice(-10)];
   try{
-    const r=await fetch("https://onrender.com",{
+    const r=await fetch("https://nazarbek-ai-bot."+"://onrender.com",{
       method:"POST",
       headers:{"Content-Type":"application/json"},
       body:JSON.stringify({messages:hist})
